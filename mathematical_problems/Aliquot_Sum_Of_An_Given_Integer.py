@@ -1,4 +1,4 @@
-# Program to get aliquot sum  
+# Python program to Calculate the aliquot sum of an given integer
 number=int(input("enter a number: "))
 i = 1
 Aliquot_sum = 0
