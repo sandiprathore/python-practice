@@ -1,4 +1,4 @@
-# Python Program to Print Natural Numbers
+# Python Program to display Natural Numbers within a range
 starting_value =int(input("Enter the starting value: "))
 ending_value =int(input("Enter the ending value: "))
 print(f'Natural numbers from {starting_value } to {ending_value } are: ')
