@@ -75,4 +75,58 @@ double_list = map(lambda i:i*2, list_of_element)
 print(list(double_list))
 ```
 
+
+##### Download a folder from S3 using Boto3
+
+```py
+import os 
+import boto3
+def download_directory_froms3(bucket_name, remote_directory_path):
+    """
+    Download a directory from s3 bucket 
+    param: s3_bucket_name, remote_directory_path
+    """
+
+    s3_resource = boto3.resource('s3',
+            aws_access_key_id="<aws_access_key_id>",
+            aws_secret_access_key="<aws_secret_access_key>"
+            )
+
+    bucket = s3_resource.Bucket(bucket_name) 
+    for obj in bucket.objects.filter(Prefix = remote_directory_path):
+        if not os.path.exists(os.path.dirname(obj.key)):
+            os.makedirs(os.path.dirname(obj.key))
+        bucket.download_file(obj.key, obj.key)
+
+download_directory_froms3("bucket_name", "remote_directory_path")
+```
+##### Convert bytes to specific unit
+
+```py
+def convert_bytes(size: int)-> str:
+    """
+    Convert file size unit 
+    param: file_size  
+    return: file_size with specific unit 
+    """
+    for x in ['bytes', 'KB', 'MB', 'GB', 'TB']:
+        if size < 1024.0:
+            return "%3.1f %s" % (size, x)
+        size /= 1024.0
+    return size
+```
+
+##### Get file name from the path of file 
+```py
+def get_file_name(file_path: str)-> str:
+    """
+    Get the base name in specified path
+    param: file_path 
+    return: name of the file 
+    """
+    import os 
+    file_name = os.path.basename(file_path)
+    return file_name
+```
+
 </font>
